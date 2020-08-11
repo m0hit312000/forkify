@@ -14,7 +14,7 @@ export default class Recipe {
              this.author = info.data.sourceName;
              this.img = info.data.image;    
              this.url = info.data.sourceUrl;
-             console.log(info);
+            //  console.log(info);
              this.ingredients = info.data.extendedIngredients;
             //  console.log(this.ingredients);
         }
