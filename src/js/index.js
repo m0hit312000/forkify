@@ -16,7 +16,6 @@ import * as likesView from './view/likesView';
 //  -liked recipes
  
 const state = {}
-window.state = state;
 
 // ******************************************** Search Controller ***************************************************
 
@@ -120,9 +119,6 @@ const controlRecipe = async () => {
       }
   });
 
-  // Testing
-  state.likes = new Likes();
-  likesView.toggleLikeMenu(state.likes.getNumLikes());
 
 // ************************************************* Like Controller *************************************************
 
@@ -153,7 +149,20 @@ const controlRecipe = async () => {
        likesView.toggleLikeMenu(state.likes.getNumLikes());
    };
 
-  
+ 
+//*************************************** Restore Liked Recipes on Page Load ******************************************* 
+
+window.addEventListener('load', () => {  
+   state.likes = new Likes();
+   // Restore Likes
+   state.likes.readStorage();
+   // Toggle Like Button
+   likesView.toggleLikeMenu(state.likes.getNumLikes());
+   // Render the existing likes
+   state.likes.likes.forEach(like => likesView.renderLike(like));
+})  
+
+
 
 
 //******************************************* Handling recipe button clicks *********************************************
